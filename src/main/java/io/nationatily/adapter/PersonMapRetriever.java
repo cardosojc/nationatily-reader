@@ -2,9 +2,11 @@ package io.nationatily.adapter;
 
 import io.nationatily.domain.Person;
 import io.nationatily.application.port.FakeDBPersonRetriever;
+import jakarta.inject.Singleton;
 
 import java.util.Map;
 
+@Singleton
 public class PersonMapRetriever implements FakeDBPersonRetriever {
 
     private static final Map<String, Person> personMap;
@@ -21,5 +23,10 @@ public class PersonMapRetriever implements FakeDBPersonRetriever {
     @Override
     public Person findNationalityByName(String name) {
         return personMap.get(name);
+    }
+
+    @Override
+    public Map<String, Person> getAllEmployees() {
+        return personMap;
     }
 }

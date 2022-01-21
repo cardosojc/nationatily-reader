@@ -11,8 +11,8 @@ public class RestPersonService implements PersonRequestPort {
 
     FakeDBPersonRetriever personRetriever;
 
-    public RestPersonService() {
-        this.personRetriever = new PersonMapRetriever();
+    public RestPersonService(FakeDBPersonRetriever personRetriever) {
+        this.personRetriever = personRetriever;
     }
 
     @Override
