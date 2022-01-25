@@ -1,5 +1,6 @@
 package io.nationatily.adapter.output;
 
+import io.nationatily.application.port.output.DBPersonRequestPort;
 import io.nationatily.domain.Person;
 
 import java.sql.Connection;
@@ -10,15 +11,14 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DBPersonRetriever implements io.nationatily.application.port.output.DBPersonRetriever {
-
-    private final String URL = "jdbc:postgresql://localhost:5432/nationalitydb";
-    private final String USER = "gustaf.nilsson";
-    private final String PASSWORD = "";
+public class DBPersonRetriever implements DBPersonRequestPort {
 
     public Connection connect() {
         Connection connection = null;
         try {
+            String PASSWORD = "";
+            String USER = "gustaf.nilsson";
+            String URL = "jdbc:postgresql://localhost:5432/nationalitydb";
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -35,7 +35,7 @@ public class DBPersonRetriever implements io.nationatily.application.port.output
             + "WHERE name = '" + input + "' ";
             try (ResultSet resultSet = stmt.executeQuery(selectSql)) {
                 while (resultSet.next()) {
-                        person = new Person(resultSet.getString("name"), resultSet.getString("nationality"));
+                        person = new Person(resultSet.getString("name"), resultSet.getString("nationality"), null);
                 }
             }
         } catch (SQLException e) {
@@ -52,7 +52,7 @@ public class DBPersonRetriever implements io.nationatily.application.port.output
             String selectSql = "SELECT * FROM persons";
             try (ResultSet resultSet = stmt.executeQuery(selectSql)) {
                 while (resultSet.next()) {
-                    Person person = new Person(resultSet.getString("name"), resultSet.getString("nationality"));
+                    Person person = new Person(resultSet.getString("name"), resultSet.getString("nationality"), null);
                     personsMap.put(person.getName(), person);
                 }
             }

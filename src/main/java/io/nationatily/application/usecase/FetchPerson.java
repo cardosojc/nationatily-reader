@@ -1,15 +1,16 @@
 package io.nationatily.application.usecase;
 
-import io.nationatily.application.port.output.DBPersonRetriever;
+import io.nationatily.adapter.output.DBPersonRetriever;
+import io.nationatily.application.port.output.DBPersonRequestPort;
 import io.nationatily.application.port.input.PersonRequestPort;
 import io.nationatily.domain.Person;
 
 public class FetchPerson implements PersonRequestPort {
 
-    DBPersonRetriever personRetriever;
+    final DBPersonRequestPort personRetriever;
 
     public FetchPerson() {
-        personRetriever = new io.nationatily.adapter.output.DBPersonRetriever();
+        personRetriever = new DBPersonRetriever();
     }
 
     @Override

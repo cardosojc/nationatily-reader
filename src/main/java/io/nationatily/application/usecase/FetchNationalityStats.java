@@ -1,6 +1,6 @@
 package io.nationatily.application.usecase;
 
-import io.nationatily.application.port.output.DBPersonRetriever;
+import io.nationatily.application.port.output.DBPersonRequestPort;
 import io.nationatily.application.port.input.NationalityRequestPort;
 import io.nationatily.domain.NationalityStats;
 import io.nationatily.domain.Person;
@@ -15,9 +15,9 @@ import static java.util.stream.Collectors.groupingBy;
 @Singleton
 public class FetchNationalityStats implements NationalityRequestPort {
 
-    DBPersonRetriever noOfNationalityRetriever;
+    final DBPersonRequestPort noOfNationalityRetriever;
 
-    public FetchNationalityStats(DBPersonRetriever noOfNationalityRetriever) {
+    public FetchNationalityStats(DBPersonRequestPort noOfNationalityRetriever) {
         this.noOfNationalityRetriever = noOfNationalityRetriever;
     }
 

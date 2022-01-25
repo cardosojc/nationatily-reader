@@ -6,17 +6,17 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 import io.nationatily.application.port.input.NationalityRequestPort;
+import io.nationatily.application.port.input.PersonRequestPort;
 import io.nationatily.domain.NationalityStats;
 import io.nationatily.domain.Person;
-import io.nationatily.application.port.input.PersonRequestPort;
 
 import java.util.List;
 
 @Controller("/nationality")
 public class PersonRestAdapter {
 
-    PersonRequestPort personRequest;
-    NationalityRequestPort nationalityRequestPort;
+    final PersonRequestPort personRequest;
+    final NationalityRequestPort nationalityRequestPort;
 
     public PersonRestAdapter(PersonRequestPort personRequest, NationalityRequestPort nationalityRequestPort) {
         this.personRequest = personRequest;

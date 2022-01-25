@@ -1,9 +1,9 @@
 package io.nationatily.adapter.input;
 
-import io.nationatily.application.usecase.FetchPerson;
-import io.nationatily.domain.Person;
 import io.nationatily.application.port.input.PersonRequestPort;
+import io.nationatily.application.usecase.FetchPerson;
 import io.nationatily.application.usecase.FetchPersonFake;
+import io.nationatily.domain.Person;
 
 public class CommandLinePersonAdapter {
     public static void main(String[] args) {

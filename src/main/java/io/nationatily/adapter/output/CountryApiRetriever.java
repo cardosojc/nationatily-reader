@@ -1,29 +1,28 @@
 package io.nationatily.adapter.output;
 
-import io.micronaut.http.HttpRequest;
 import io.micronaut.http.client.HttpClient;
+import io.micronaut.http.client.annotation.Client;
+import io.micronaut.http.uri.UriBuilder;
 import io.nationatily.application.port.output.CountryRequestPort;
-import jakarta.inject.Singleton;
+import jakarta.inject.Inject;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import javax.ws.rs.core.UriBuilder;
-import java.net.URI;
+import java.util.Collections;
 
-
-@Singleton
 public class CountryApiRetriever implements CountryRequestPort {
-    private final URI uri;
-    private final HttpClient httpClient;
 
-    public CountryApiRetriever(HttpClient httpClient) {
-        this.uri = UriBuilder.fromUri("https://restcountries.com/v3.1/demonym/").build();
-        this.httpClient = httpClient;
-    }
+    @Client("https://restcountries.com/v3.1/demonym/")
+    @Inject
+    HttpClient httpClient;
 
     @Override
     public String fetchCountryFromDemonym(String demonym) {
-
-        HttpRequest<?> request =  HttpRequest.GET(uri);
-
-        return null;
+        String uri = UriBuilder.of("/{demonym}")
+                .expand(Collections.singletonMap("demonym", demonym)).toString();
+        var result = httpClient.toBlocking().retrieve(uri);
+        JSONArray jsonArray = new JSONArray(result);
+        JSONObject jsonObject = (JSONObject) jsonArray.get(0);
+        return ((JSONObject) jsonObject.get("name")).getString("common");
     }
 }
