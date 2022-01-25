@@ -7,8 +7,8 @@ public class NationalityStats {
     private Long no;
 
     public NationalityStats(String nationality, Long no) {
-        nationality = nationality;
-        no = no;
+        this.nationality = nationality;
+        this.no = no;
     }
 
     public String getNationality() {

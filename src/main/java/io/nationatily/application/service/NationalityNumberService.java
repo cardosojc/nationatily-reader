@@ -9,6 +9,7 @@ import jakarta.inject.Singleton;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
 @Singleton
@@ -23,6 +24,6 @@ public class NationalityNumberService implements NationalityRequestPort {
     @Override
     public List<NationalityStats> findNoOfEmployessByNationality() {
         var personMap = noOfNationalityRetriever.getAllEmployees();
-        return personMap.values().stream().collect(groupingBy(Person::getNationality, Collectors.counting())).entrySet().stream().map(entry-> new NationalityStats(entry.getKey(), entry.getValue())).collect(Collectors.toList());
+        return  personMap.values().stream().collect(groupingBy(Person::getNationality, counting())).entrySet().stream().map(a->new NationalityStats(a.getKey(), a.getValue())).collect(Collectors.toList());
     }
 }
