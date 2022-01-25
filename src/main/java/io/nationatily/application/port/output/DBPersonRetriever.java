@@ -1,10 +1,10 @@
-package io.nationatily.application.port;
+package io.nationatily.application.port.output;
 
 import io.nationatily.domain.Person;
 
 import java.util.Map;
 
-public interface FakeDBPersonRetriever {
+public interface DBPersonRetriever {
     Person findNationalityByName(String name);
     Map<String,Person> getAllEmployees();
 }

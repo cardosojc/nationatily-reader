@@ -1,7 +1,7 @@
-package io.nationatily.application.service;
+package io.nationatily.application.usecase;
 
-import io.nationatily.application.port.FakeDBPersonRetriever;
-import io.nationatily.application.port.NationalityRequestPort;
+import io.nationatily.application.port.output.DBPersonRetriever;
+import io.nationatily.application.port.input.NationalityRequestPort;
 import io.nationatily.domain.NationalityStats;
 import io.nationatily.domain.Person;
 import jakarta.inject.Singleton;
@@ -13,11 +13,11 @@ import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
 @Singleton
-public class NationalityNumberService implements NationalityRequestPort {
+public class FetchNationalityStats implements NationalityRequestPort {
 
-    FakeDBPersonRetriever noOfNationalityRetriever;
+    DBPersonRetriever noOfNationalityRetriever;
 
-    public NationalityNumberService(FakeDBPersonRetriever noOfNationalityRetriever) {
+    public FetchNationalityStats(DBPersonRetriever noOfNationalityRetriever) {
         this.noOfNationalityRetriever = noOfNationalityRetriever;
     }
 

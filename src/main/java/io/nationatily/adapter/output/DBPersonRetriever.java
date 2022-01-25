@@ -1,6 +1,5 @@
-package io.nationatily.adapter;
+package io.nationatily.adapter.output;
 
-import io.nationatily.application.port.FakeDBPersonRetriever;
 import io.nationatily.domain.Person;
 
 import java.sql.Connection;
@@ -8,12 +7,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class DBPersonRetriever implements FakeDBPersonRetriever {
+public class DBPersonRetriever implements io.nationatily.application.port.output.DBPersonRetriever {
 
     private final String URL = "jdbc:postgresql://localhost:5432/nationalitydb";
     private final String USER = "gustaf.nilsson";
@@ -32,20 +29,19 @@ public class DBPersonRetriever implements FakeDBPersonRetriever {
     @Override
     public Person findNationalityByName(String input) {
         Connection con = connect();
-        List<Person> persons = new ArrayList<>();
+        Person person = null;
         try (Statement stmt = con.createStatement()) {
             String selectSql = "SELECT * FROM persons "
-            + "WHERE name LIKE '" + input + "' ";
+            + "WHERE name = '" + input + "' ";
             try (ResultSet resultSet = stmt.executeQuery(selectSql)) {
                 while (resultSet.next()) {
-                        Person person = new Person(resultSet.getString("name"), resultSet.getString("nationality"));
-                        persons.add(person);
+                        person = new Person(resultSet.getString("name"), resultSet.getString("nationality"));
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return persons.get(0);
+        return person;
     }
 
     @Override

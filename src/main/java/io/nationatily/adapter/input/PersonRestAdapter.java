@@ -1,14 +1,14 @@
-package io.nationatily.adapter;
+package io.nationatily.adapter.input;
 
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
-import io.nationatily.application.port.NationalityRequestPort;
+import io.nationatily.application.port.input.NationalityRequestPort;
 import io.nationatily.domain.NationalityStats;
 import io.nationatily.domain.Person;
-import io.nationatily.application.port.PersonRequestPort;
+import io.nationatily.application.port.input.PersonRequestPort;
 
 import java.util.List;
 

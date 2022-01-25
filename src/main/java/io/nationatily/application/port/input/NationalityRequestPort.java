@@ -1,4 +1,4 @@
-package io.nationatily.application.port;
+package io.nationatily.application.port.input;
 
 import io.nationatily.domain.NationalityStats;
 

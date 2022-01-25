@@ -1,13 +1,13 @@
-package io.nationatily.adapter;
+package io.nationatily.adapter.output;
 
 import io.nationatily.domain.Person;
-import io.nationatily.application.port.FakeDBPersonRetriever;
+import io.nationatily.application.port.output.DBPersonRetriever;
 import jakarta.inject.Singleton;
 
 import java.util.Map;
 
 @Singleton
-public class PersonMapRetriever implements FakeDBPersonRetriever {
+public class PersonMapRetriever implements DBPersonRetriever {
 
     private static final Map<String, Person> personMap;
 
