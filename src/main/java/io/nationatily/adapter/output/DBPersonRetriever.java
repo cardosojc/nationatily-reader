@@ -16,9 +16,9 @@ public class DBPersonRetriever implements DBPersonRequestPort {
     public Connection connect() {
         Connection connection = null;
         try {
-            String PASSWORD = "";
-            String USER = "gustaf.nilsson";
-            String URL = "jdbc:postgresql://localhost:5432/nationalitydb";
+            String PASSWORD = "docker";
+            String USER = "postgres";
+            String URL = "jdbc:postgresql://localhost:5432/persons";
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();

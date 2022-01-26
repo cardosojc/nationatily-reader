@@ -11,7 +11,7 @@ public class CommandLinePersonAdapter {
         Person person = personRequest.findNationalityByName("José");
         System.out.println(person.getNationality());
         PersonRequestPort dbPersonRequest = new FetchPerson();
-        Person person1 = dbPersonRequest.findNationalityByName("Martin");
+        Person person1 = dbPersonRequest.findNationalityByName("Gustaf");
         System.out.println(person1.getNationality());
     }
 }
